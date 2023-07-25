@@ -1,4 +1,5 @@
 import { Body, Controller, Post } from '@nestjs/common';
+import { ProductService } from './product.service';
 
 @Controller('product')
 export class ProductController {
@@ -9,7 +10,6 @@ export class ProductController {
     @Body('price') price: number ,
     @Body('description') name: string,
   ) {
-    await this.ProductService
+    return await this.ProductService.createProduct();
   }
-
 }
