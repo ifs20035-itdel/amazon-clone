@@ -3,7 +3,7 @@ import { ProductService } from './product.service';
 
 @Controller('product')
 export class ProductController {
-  constructor(private readonly productService: ProductService) {}
+  constructor(private productService: ProductService) {}
 
   @Post()
   async createPost(
@@ -11,7 +11,6 @@ export class ProductController {
     @Body('price') price: number,
     @Body('description') description: string,
   ) {
-    const data = { name, price, description };
-    return await this.productService.createProduct();
+    return await this.productService.createProduct(name, price, description);
   }
 }

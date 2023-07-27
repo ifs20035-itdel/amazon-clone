@@ -10,7 +10,11 @@ export class ProductService {
     private readonly productModel: Model<ProductDocument>,
   ) {}
 
-  async createProduct(name: string, price: string, description: string) {
+  async createProduct(
+    name: string,
+    price: number,
+    description: string,
+  ): Promise<ProductDocument> {
     const newProduct = new this.productModel({ name, price, description });
     return newProduct.save();
   }
