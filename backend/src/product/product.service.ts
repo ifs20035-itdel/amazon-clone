@@ -18,4 +18,8 @@ export class ProductService {
     const newProduct = new this.productModel({ name, price, description });
     return newProduct.save();
   }
+
+  async findAll(id: string): Promise<ProductDocument[]> {
+    return this.productModel.findById(id);
+  }
 }
