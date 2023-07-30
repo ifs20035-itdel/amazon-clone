@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Param, Patch, Post } from '@nestjs/common';
+import { Body, Controller, Get, HttpException, HttpStatus, Param, Patch, Post } from '@nestjs/common';
 import { ProductService } from './product.service';
 import { ProductDocument } from './product.schema';
 
@@ -26,7 +26,19 @@ export class ProductController {
   }
 
   @Patch(':id')
-  async updateProduct(@Param('id') id: string): Promise<ProductDocument> {
-    return await this.productService.findById(id);
+  async updateProduct(
+    @Param('id') id: string,
+    @Body('name') name: string,
+    @Body('price') price: number,
+    @Body('description') description?: string,
+  ): Promise<ProductDocument> {
+    const existingProduct = await this.productService.findById(id);
+    if (!existingProduct) {
+      throw new HttpException(
+        'The Product is not correct',
+        HttpStatus.BAD_REQUEST,
+      );
+    }
+    return this.productService.update(id, name, price, description);
   }
 }
