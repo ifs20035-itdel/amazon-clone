@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { ProductDocument } from './product.schema';
 import { Model } from 'mongoose';
@@ -25,5 +25,12 @@ export class ProductService {
 
   async findById(id: string): Promise<ProductDocument> {
     return this.productModel.findById(id).exec();
+  }
+
+  async update(id: string, name: string, price: number, description: string) {
+    if (!this.findById(id)) {
+      throw new HttpException('Wrong id', HttpStatus.BAD_REQUEST);
+    }
+    await this.createProduct(name, price, description);
   }
 }
