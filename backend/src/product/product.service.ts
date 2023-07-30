@@ -19,7 +19,11 @@ export class ProductService {
     return newProduct.save();
   }
 
-  async findAll(id: string): Promise<ProductDocument[]> {
-    return this.productModel.findById(id);
+  async findAll(): Promise<ProductDocument[]> {
+    return this.productModel.find().exec();
+  }
+
+  async findById(id: string): Promise<ProductDocument> {
+    return this.productModel.findById(id).exec();
   }
 }
