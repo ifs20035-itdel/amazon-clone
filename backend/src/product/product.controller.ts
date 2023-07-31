@@ -1,4 +1,14 @@
-import { Body, Controller, Delete, Get, HttpException, HttpStatus, Param, Patch, Post } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  HttpException,
+  HttpStatus,
+  Param,
+  Patch,
+  Post,
+} from '@nestjs/common';
 import { ProductService } from './product.service';
 import { ProductDocument } from './product.schema';
 
@@ -44,6 +54,14 @@ export class ProductController {
 
   @Delete(':id')
   async removeProduct(@Param('id') id: string) {
-    await this.productService.delete(id);
+    const existingProduct = await this.productService.findById(id);
+    if (!existingProduct) {
+      throw new HttpException(
+        'The Product id is not correct',
+        HttpStatus.BAD_REQUEST,
+      );
+    }
+    // TODO: fix return JSON;
+    return await this.productService.delete(id);
   }
 }
