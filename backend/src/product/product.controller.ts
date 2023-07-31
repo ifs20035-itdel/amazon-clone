@@ -1,4 +1,4 @@
-import { Body, Controller, Get, HttpException, HttpStatus, Param, Patch, Post } from '@nestjs/common';
+import { Body, Controller, Delete, Get, HttpException, HttpStatus, Param, Patch, Post } from '@nestjs/common';
 import { ProductService } from './product.service';
 import { ProductDocument } from './product.schema';
 
@@ -40,5 +40,10 @@ export class ProductController {
       );
     }
     return this.productService.update(id, name, price, description);
+  }
+
+  @Delete(':id')
+  async removeProduct(@Param('id') id: string) {
+    await this.productService.delete(id);
   }
 }
