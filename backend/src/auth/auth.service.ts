@@ -21,6 +21,14 @@ export class AuthService {
     // TODO : Fix "Email already used" case
     if (existingUser) return undefined;
 
-    return this.userService
+    const hashedPassword = await this.hashPassword(password);
+
+    const newUser = await this.userService.createUser(
+      name,
+      email,
+      hashedPassword,
+    );
+
+    return this.userService._getUserDetails(newUser);
   }
 }

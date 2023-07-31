@@ -36,7 +36,7 @@ export class UserService {
     return this.userModel.findOne({ email }).exec();
   }
 
-  async findById(id: string): Promise<UserDocument | undefined> {
+  async findById(id: string): Promise<UserDetails | undefined> {
     const existingUser = await this.userModel.findById({ id }).exec();
     if (!existingUser)
       throw new HttpException('Not exist', HttpStatus.NOT_FOUND);
