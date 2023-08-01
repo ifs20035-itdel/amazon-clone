@@ -11,4 +11,8 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
       secretOrKey: 'this_secret_right_michael',
     });
   }
+
+  async validate(payload: any) {
+    return { ...payload.user };
+  }
 }

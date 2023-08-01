@@ -39,9 +39,14 @@ export class UserService {
 
   // Return the user without the password
   async findById(id: string): Promise<UserDetails | undefined> {
-    const existingUser = await this.userModel.findById({ id }).exec();
+    const existingUser = await this.userModel.findById({ _id: id }).exec();
     if (!existingUser)
       throw new HttpException('Not exist', HttpStatus.NOT_FOUND);
     return this._getUserDetails(existingUser);
+  }
+
+  // dummy to get all user
+  async getAll(): Promise<UserDocument[]> {
+    return this.userModel.find().exec();
   }
 }
