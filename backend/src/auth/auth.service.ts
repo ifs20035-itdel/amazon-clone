@@ -57,7 +57,9 @@ export class AuthService {
         existingUser.password,
       );
       if (doesMatch) {
-        const jwt = await this.jwtService.signAsync({});
+        // TODO implement user_token to another function
+        const user_token = this.userService._getUserDetails(existingUser);
+        const jwt = await this.jwtService.signAsync({ user_token });
         return { token: jwt };
       }
     }
