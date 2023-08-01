@@ -32,10 +32,12 @@ export class UserService {
     return newUser.save();
   }
 
-  async findByEmail(email: string): Promise<UserDocument>{
+  // Return all the User Document including the password
+  async findByEmail(email: string): Promise<UserDocument> {
     return this.userModel.findOne({ email }).exec();
   }
 
+  // Return the user without the password
   async findById(id: string): Promise<UserDetails | undefined> {
     const existingUser = await this.userModel.findById({ id }).exec();
     if (!existingUser)
