@@ -8,9 +8,7 @@ export class UserController {
   constructor(private authService: AuthService) {}
 
   @Post('register')
-  async register(
-    @Body() user: UserRegisterDto,
-  ): Promise<UserDetails | undefined> {
+  async register(@Body() user: UserRegisterDto): Promise<UserDetails | string> {
     return this.authService.register(user);
   }
 }

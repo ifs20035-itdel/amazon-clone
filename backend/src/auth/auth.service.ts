@@ -13,13 +13,15 @@ export class AuthService {
     return bcrypt.hash(password, 12);
   }
 
-  async register(user: Readonly<UserRegisterDto>): Promise<UserDetails> | undefined {
-    const {name, email, password} = user;
+  async register(
+    user: Readonly<UserRegisterDto>,
+  ): Promise<UserDetails | string> {
+    const { name, email, password } = user;
 
     const existingUser = await this.userService.findByEmail(email);
 
     // TODO : Fix "Email already used" case
-    if (existingUser) return undefined;
+    if (existingUser) return 'email already taken!';
 
     const hashedPassword = await this.hashPassword(password);
 
