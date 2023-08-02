@@ -29,6 +29,10 @@ const RegistrationFormComponent: FC = () => {
         </InputLabel>
         <TextField type="text" name='email' id='email' variant='outlined' size='small' />
 
+        <InputLabel sx={{fontWeight: 500, marginTop: 1, color: '#000000'}} htmlFor='password'>
+          Password
+        </InputLabel>
+        <TextField type="password" name='password' id='password' variant='outlined' size='small' />
 
       </Grid>
     </form>
