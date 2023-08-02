@@ -1,6 +1,8 @@
+import AuthLayout from "../features/auth/components/AuthLayout"
+
 const HomePage = () => {
   return (
-    <div>HomePage</div>
+    <AuthLayout>HomePage</AuthLayout>
   )
 }
 
