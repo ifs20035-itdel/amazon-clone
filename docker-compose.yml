@@ -10,7 +10,6 @@ services:
       - 27017:27017
   
   mongo-express:
-    container_image: mongo-express
     image: mongo-express
     environment:
       - ME_CONFIG_MONGODB_SERVER=mongo
