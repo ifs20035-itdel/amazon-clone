@@ -6,6 +6,6 @@ async function bootstrap() {
   app.enableCors();
   // ! Prefix after the root of Http Request if needed
   // app.setGlobalPrefix('api');
-  await app.listen(3000);
+  await app.listen(3001);
 }
 bootstrap();
