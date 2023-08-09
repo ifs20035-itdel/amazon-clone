@@ -14,10 +14,10 @@ const inputReducer = (state: InputState, action: Action<InputActionType>) => {
     case INPUT_ACTION_CHANGE:
       return { text: value, hasBeenTouched: state.hasBeenTouched}
     case INPUT_ACTION_BLUR:
-      return { text: value, hasBeenTouched: state.hasBeenTouched}
+      return { text: state.text, hasBeenTouched: true}
     case INPUT_ACTION_CLEAR:
-      return { text: value, hasBeenTouched: state.hasBeenTouched}
+      return { text: '', hasBeenTouched: false}
     default:
-      break;
+      return {...state};
   }
 }
