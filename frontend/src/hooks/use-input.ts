@@ -23,7 +23,7 @@ const inputReducer = (state: InputState, action: Action<InputActionType>) => {
   }
 }
 
-const useInput = () => {
+const useInput = (validatorFn?:) => {
   const [{ text, hasBeenTouched }, dispatch] = useReducer(
     inputReducer, 
     initialInputState,
