@@ -1,8 +1,19 @@
 import { Box, Grid, TextField, InputLabel, Typography, Button, Divider} from "@mui/material";
 import { FC,  FormEvent } from "react";
 import { Link } from "react-router-dom";
+import { validateNameLength } from "../../../shared/utils/validation/length";
+import useInput from "../../../hooks/use-input";
 
 const RegistrationFormComponent: FC = () => {
+
+  const { 
+    text,
+
+    shouldDisplayError,
+    textChangeHandler,
+    inputBlurHandler,
+    clearHandler,
+  } = useInput(validateNameLength)
 
   const onSubmitHandler = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
