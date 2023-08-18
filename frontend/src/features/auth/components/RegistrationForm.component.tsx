@@ -7,12 +7,12 @@ import useInput from "../../../hooks/input/use-input";
 const RegistrationFormComponent: FC = () => {
 
   const { 
-    text,
+    text: name,
 
-    shouldDisplayError,
-    textChangeHandler,
-    inputBlurHandler,
-    clearHandler,
+    shouldDisplayError: nameHasError,
+    textChangeHandler:nameChangeHandler,
+    inputBlurHandler: nameBlurHandler,
+    clearHandler: nameClearHandler,
   } = useInput(validateNameLength);
 
   const onSubmitHandler = (e: FormEvent<HTMLFormElement>) => {
