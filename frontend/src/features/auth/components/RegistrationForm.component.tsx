@@ -1,8 +1,9 @@
 import { Box, Grid, TextField, InputLabel, Typography, Button, Divider} from "@mui/material";
 import { FC,  FormEvent } from "react";
 import { Link } from "react-router-dom";
-import { validateNameLength } from "../../../shared/utils/validation/length";
+import { validateNameLength, validatePasswordLength } from "../../../shared/utils/validation/length";
 import useInput from "../../../hooks/input/use-input";
+import { ValidateEmail } from "../../../shared/utils/validation/email";
 
 const RegistrationFormComponent: FC = () => {
 
@@ -14,6 +15,33 @@ const RegistrationFormComponent: FC = () => {
     inputBlurHandler: nameBlurHandler,
     clearHandler: nameClearHandler,
   } = useInput(validateNameLength);
+  
+  const { 
+    text: email,
+
+    shouldDisplayError: emailHasError,
+    textChangeHandler:emailChangeHandler,
+    inputBlurHandler: emailBlurHandler,
+    clearHandler: emailClearHandler,
+  } = useInput(ValidateEmail);
+  
+  const { 
+    text: password,
+
+    shouldDisplayError: passwordHasError,
+    textChangeHandler:passwordChangeHandler,
+    inputBlurHandler: passwordBlurHandler,
+    clearHandler: passwordClearHandler,
+  } = useInput(validatePasswordLength);
+  
+  const { 
+    text: confirmPassword,
+
+    shouldDisplayError: confirmPasswordHasError,
+    textChangeHandler:confirmPasswordChangeHandler,
+    inputBlurHandler: confirmPasswordBlurHandler,
+    clearHandler: confirmPasswordClearHandler,
+  } = useInput(validatePasswordLength);
 
   const onSubmitHandler = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -52,12 +80,25 @@ const RegistrationFormComponent: FC = () => {
         <InputLabel sx={{fontWeight: 500, marginTop: 1, color: '#000000'}} htmlFor='email'>
           Email
         </InputLabel>
-        <TextField type="text" name='email' id='email' variant='outlined' size='small' />
+        <TextField
+          value={email} 
+          onChange={emailChangeHandler} 
+          onBlur={emailBlurHandler} 
+          error={emailHasError} 
+          helperText={emailHasError ? 'Enter your email' : '' } 
+
+          type="text" name='email' id='email' variant='outlined' size='small' />
 
         <InputLabel sx={{fontWeight: 500, marginTop: 1, color: '#000000'}} htmlFor='password'>
           Password
         </InputLabel>
-        <TextField type="password" name='password' id='password' variant='outlined' size='small' placeholder="Minimum 6 characters required" />
+        <TextField
+          value={password} 
+          onChange={passwordChangeHandler} 
+          onBlur={passwordBlurHandler} 
+          error={passwordHasError} 
+          helperText={passwordHasError ? 'Enter your password' : '' } 
+          type="password" name='password' id='password' variant='outlined' size='small' placeholder="Minimum 6 characters required" />
 
         <InputLabel sx={{fontWeight: 500, marginTop: 1, color: '#000000'}} htmlFor='confirmPassword'>
           Re-enter Password
