@@ -103,7 +103,14 @@ const RegistrationFormComponent: FC = () => {
         <InputLabel sx={{fontWeight: 500, marginTop: 1, color: '#000000'}} htmlFor='confirmPassword'>
           Re-enter Password
         </InputLabel>
-        <TextField type="password" name='confirmPassword' id='confirmPassword' variant='outlined' size='small' />
+        <TextField
+          value={confirmPassword} 
+          onChange={confirmPasswordChangeHandler} 
+          onBlur={confirmPasswordBlurHandler} 
+          error={confirmPassword.length > 0 && password !== confirmPassword} 
+          helperText={confirmPassword.length > 0 && password !== confirmPassword ? 'Password didn\'t match' : '' } 
+
+          type="password" name='confirmPassword' id='confirmPassword' variant='outlined' size='small' />
 
         <Button type="submit" variant="contained" style={{ marginTop: '16px', height: '31px', backgroundColor: '#f0c14b', color: 'black', borderColor: '#a88734 #9c7e31 #846a29', textTransform: 'none'}}>
           Register
