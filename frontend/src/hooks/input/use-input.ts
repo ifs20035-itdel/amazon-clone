@@ -1,7 +1,7 @@
 import { ChangeEvent, useReducer } from "react";
 import { Action } from "../../shared/models/action.interface";
-import { INPUT_ACTION_BLUR, INPUT_ACTION_CHANGE, INPUT_ACTION_CLEAR, InputActionType } from "../models/inputAction";
-import { InputState } from "../models/inputStateInterface";
+import { INPUT_ACTION_BLUR, INPUT_ACTION_CHANGE, INPUT_ACTION_CLEAR, InputActionType } from "./models/inputAction";
+import { InputState } from "./models/inputStateInterface";
 import { validatorFn } from "../../shared/utils/validation/models/ValidatorFn";
 
 const initialInputState: InputState = {
