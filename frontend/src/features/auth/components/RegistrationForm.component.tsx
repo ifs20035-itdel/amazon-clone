@@ -87,7 +87,7 @@ const RegistrationFormComponent: FC = () => {
           error={emailHasError} 
           helperText={emailHasError ? 'Enter your email' : '' } 
 
-          type="text" name='email' id='email' variant='outlined' size='small' />
+          type="email" name='email' id='email' variant='outlined' size='small' />
 
         <InputLabel sx={{fontWeight: 500, marginTop: 1, color: '#000000'}} htmlFor='password'>
           Password
