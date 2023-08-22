@@ -41,7 +41,13 @@ const RegistrationFormComponent: FC = () => {
         <InputLabel sx={{fontWeight: 500, marginTop: 1, color: '#000000'}} htmlFor='name'>
           Your Name
         </InputLabel>
-        <TextField type="text" name='name' id='name' variant='outlined' size='small' />
+        <TextField 
+          value={name} 
+          onChange={nameChangeHandler} 
+          onBlur={nameBlurHandler} 
+          error={nameHasError} 
+          helperText={nameHasError ? 'Enter your name' : '' } 
+          type="text" name='name' id='name' variant='outlined' size='small' />
 
         <InputLabel sx={{fontWeight: 500, marginTop: 1, color: '#000000'}} htmlFor='email'>
           Email
