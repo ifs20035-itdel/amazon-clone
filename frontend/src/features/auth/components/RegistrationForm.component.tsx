@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { validateNameLength, validatePasswordLength } from "../../../shared/utils/validation/length";
 import useInput from "../../../hooks/input/use-input";
 import { ValidateEmail } from "../../../shared/utils/validation/email";
+import { NewUser } from "../models/NewUser";
 
 const RegistrationFormComponent: FC = () => {
 
@@ -45,6 +46,21 @@ const RegistrationFormComponent: FC = () => {
 
   const onSubmitHandler = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
+    if (password !== confirmPassword)return;
+
+    if (nameHasError || emailHasError || passwordHasError || confirmPasswordHasError)return;
+
+    if(
+      name.length === 0 ||
+      email.length === 0 ||
+      password.length === 0 ||
+      confirmPassword.length === 0
+    )return;
+
+    const newUser: NewUser = {
+      name, email, password
+    }
 
     console.log("Clicked");
   }
