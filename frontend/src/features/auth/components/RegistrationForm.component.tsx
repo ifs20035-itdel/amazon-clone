@@ -62,7 +62,7 @@ const RegistrationFormComponent: FC = () => {
       name, email, password
     }
 
-    console.log("Clicked");
+    console.log("NEW USER: ", newUser);
   }
 
   return <Box sx={
