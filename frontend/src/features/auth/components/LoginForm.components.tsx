@@ -1,8 +1,29 @@
 import { Box, Grid, TextField, InputLabel, Typography, Button, Divider} from "@mui/material";
 import { FC,  FormEvent } from "react";
 import { Link } from "react-router-dom";
+import useInput from "../../../hooks/input/use-input";
+import { validatePasswordLength } from "../../../shared/utils/validation/length";
+import { ValidateEmail } from "../../../shared/utils/validation/email";
 
 const LoginFormComponent: FC = () => {
+
+  const { 
+    text: email,
+
+    shouldDisplayError: emailHasError,
+    textChangeHandler:emailChangeHandler,
+    inputBlurHandler: emailBlurHandler,
+    clearHandler: emailClearHandler,
+  } = useInput(ValidateEmail);
+  
+  const { 
+    text: password,
+
+    shouldDisplayError: passwordHasError,
+    textChangeHandler:passwordChangeHandler,
+    inputBlurHandler: passwordBlurHandler,
+    clearHandler: passwordClearHandler,
+  } = useInput(validatePasswordLength);
 
   const onSubmitHandler = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
