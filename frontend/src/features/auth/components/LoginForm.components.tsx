@@ -25,10 +25,26 @@ const LoginFormComponent: FC = () => {
     clearHandler: passwordClearHandler,
   } = useInput(validatePasswordLength);
 
+  const clearForm = () => {
+    emailClearHandler();
+    passwordClearHandler();
+  }
+
   const onSubmitHandler = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log("Clicked");
+
+    if ( emailHasError || passwordHasError )return;
+
+    if(
+      email.length === 0 ||
+      password.length === 0
+    )return;
+
+    console.log("USER: ", email, password);
+    
+    clearForm();
   }
+
   return (
     <>
       <Box sx={
@@ -51,12 +67,25 @@ const LoginFormComponent: FC = () => {
             <InputLabel sx={{fontWeight: 500, marginTop: 1, color: '#000000'}} htmlFor='email'>
               Email
             </InputLabel>
-            <TextField type="text" name='email' id='email' variant='outlined' size='small' />
+            <TextField
+              value={email} 
+              onChange={emailChangeHandler} 
+              onBlur={emailBlurHandler} 
+              error={emailHasError} 
+              helperText={emailHasError ? 'Enter your email' : '' } 
+
+              type="email" name='email' id='email' variant='outlined' size='small' />
 
             <InputLabel sx={{fontWeight: 500, marginTop: 1, color: '#000000'}} htmlFor='password'>
               Password
             </InputLabel>
-            <TextField type="password" name='password' id='password' variant='outlined' size='small' />
+            <TextField
+              value={password} 
+              onChange={passwordChangeHandler} 
+              onBlur={passwordBlurHandler} 
+              error={passwordHasError} 
+              helperText={passwordHasError ? 'Enter your password' : '' } 
+              type="password" name='password' id='password' variant='outlined' size='small' placeholder="Minimum 6 characters required" />
 
             <Button type="submit" variant="contained" style={{ marginTop: '16px', height: '31px', backgroundColor: '#f0c14b', color: 'black', borderColor: '#a88734 #9c7e31 #846a29', textTransform: 'none'}}>
               Continue
