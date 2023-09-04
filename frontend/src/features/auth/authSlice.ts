@@ -39,12 +39,14 @@ export const register = createAsyncThunk(
 export const authSlice = createSlice({
   name: 'auth',
   initialState,
-  reducers: {
+  // reducers: {
 
-  },
+  // },
   extraReducer: (builder) => {
     builder
       //REGISTER
-      .addCase()
+      .addCase(register.pending, (state) => {
+        
+      })
   }
 });
