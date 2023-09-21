@@ -46,7 +46,7 @@ export const authSlice = createSlice({
     builder
       //REGISTER
       .addCase(register.pending, (state) => {
-        
+        state.isLoading = false;
       })
   }
 });
