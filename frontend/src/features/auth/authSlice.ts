@@ -34,19 +34,17 @@ export const register = createAsyncThunk(
       return thunkAPI.rejectWithValue('Unable to register!')
     }
   }
-)
+);
 
 export const authSlice = createSlice({
-  name: "auth",
+  name: 'auth',
   initialState,
-  // reducers: {
-
-  // },
+  reducers: {},
   extraReducer: (builder) => {
     builder
       //REGISTER
       .addCase(register.pending, (state) => {
         state.isLoading = false;
       })
-  }
+  },
 });
