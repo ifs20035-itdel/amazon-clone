@@ -37,7 +37,7 @@ export const register = createAsyncThunk(
 )
 
 export const authSlice = createSlice({
-  name: 'auth',
+  name: "auth",
   initialState,
   // reducers: {
 
