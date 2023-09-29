@@ -19,7 +19,7 @@ interface AuthState extends AsyncState {
 const initialState: AuthState = {
   user: null, // user,
   jwt: null, // jwt,
-  isAuthenticated: false,
+  isAuthenticated: false, 
   isLoading: false,
   isSuccess: false,
   isError: false,
@@ -39,17 +39,24 @@ export const register = createAsyncThunk(
 export const authSlice = createSlice({
   name: 'auth',
   initialState,
-  reducers: {},
-  extraReducer: (builder) => {
+  reducers: {
+
+  },
+  extraReducers: (builder) => {
     builder
       //REGISTER
       .addCase(register.pending, (state) => {
-        state.isLoading = false;
+        state.isLoading = true;
       })
       .addCase(register.fulfilled, (state, action) => {
         state.isLoading = false;
         state.isSuccess = true;
         state.user = action.payload;
+      })
+      .addCase(register.rejected, (state) => {
+        state.isLoading = false;
+        state.isSuccess = true;
+        state.user = null;
       })
   },
 });
